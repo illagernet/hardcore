@@ -8,14 +8,17 @@ import org.bukkit.plugin.java.annotation.command.Commands;
 import org.bukkit.plugin.java.annotation.permission.ChildPermission;
 import org.bukkit.plugin.java.annotation.permission.Permission;
 import org.bukkit.plugin.java.annotation.permission.Permissions;
+import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
+import org.bukkit.plugin.java.annotation.plugin.ApiVersion.Target;
 
 /**
  * Illager Net plugin that adds hardcore mechanics
  */
-@Plugin(name = "Hardcore", version = "1.0")
+@Plugin(name = "Hardcore", version = "1.1")
 @Description(value = "Hardcore mechanics")
+@ApiVersion(Target.v1_15)
 @Permissions({
 	@Permission(
 		name = "hardcore.revive",
@@ -49,6 +52,8 @@ public class HardcorePlugin extends JavaPlugin {
 		this.getCommand("revive").setExecutor(new ReviveCommand(this));
 		this.getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
 		this.getServer().getPluginManager().registerEvents(new PlayerLogin(this), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerRespawn(this), this);
 	}
 	
 	@Override

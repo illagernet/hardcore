@@ -7,7 +7,7 @@
 	<groupId>net.illager.hardcore</groupId>
 	<artifactId>hardcore</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0</version>
+	<version>1.1</version>
 	<name>hardcore</name>
 	<url>http://maven.apache.org</url>
 
