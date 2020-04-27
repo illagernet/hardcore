@@ -7,12 +7,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoin implements Listener {
-	HardcorePlugin plugin;
-	RandomSpawner spawner;
+	private HardcorePlugin plugin;
+	private RandomSpawner spawner;
+	private Welcomer welcomer;
 
 	public PlayerJoin(HardcorePlugin plugin) {
 		this.plugin = plugin;
 		this.spawner = new RandomSpawner(plugin);
+		this.welcomer = new Welcomer(this.plugin);
 	}
 
 	@EventHandler
@@ -21,10 +23,8 @@ public class PlayerJoin implements Listener {
 		if(!player.hasPlayedBefore()) {
 			Location spawnpoint = spawner.generate();
 			player.teleport(spawnpoint);
-
-			Welcome welcome = new Welcome(this.plugin);
-			welcome.giveKit(player);
-			welcome.remindWelcome(player);
+			welcomer.giveKit(player);
+			welcomer.remindWelcome(player);
 		}
 	}
 }

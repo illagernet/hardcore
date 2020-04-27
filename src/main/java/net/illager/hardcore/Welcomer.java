@@ -5,10 +5,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.ChatColor;
 
-public class Welcome {
-	HardcorePlugin plugin;
+public class Welcomer {
+	private HardcorePlugin plugin;
 
-	public Welcome(HardcorePlugin plugin) {
+	public Welcomer(HardcorePlugin plugin) {
 		this.plugin = plugin;
 	}
 
