@@ -16,7 +16,7 @@ import org.bukkit.plugin.java.annotation.plugin.ApiVersion.Target;
 /**
  * Illager Net plugin that adds hardcore mechanics
  */
-@Plugin(name = "Hardcore", version = "1.0")
+@Plugin(name = "Hardcore", version = "1.1")
 @Description(value = "Hardcore mechanics")
 @ApiVersion(Target.v1_15)
 @Permissions({
@@ -52,6 +52,8 @@ public class HardcorePlugin extends JavaPlugin {
 		this.getCommand("revive").setExecutor(new ReviveCommand(this));
 		this.getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
 		this.getServer().getPluginManager().registerEvents(new PlayerLogin(this), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerRespawn(this), this);
 	}
 	
 	@Override

@@ -2,7 +2,6 @@ package net.illager.hardcore;
 
 import java.util.Date;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,7 +26,7 @@ public class PlayerDeath implements Listener {
 		DeathBan ban = new DeathBan(time, location, deathMessage, 0L);
 		log.add(player.getUniqueId(), ban);
 		log.save();
-		Bukkit.getScheduler().runTask(this.plugin, new Runnable() {
+		this.plugin.getServer().getScheduler().runTask(this.plugin, new Runnable() {
 			@Override
 			public void run() {
 				player.kickPlayer(ban.kickMessage());
