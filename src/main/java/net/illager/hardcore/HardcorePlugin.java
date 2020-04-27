@@ -8,14 +8,17 @@ import org.bukkit.plugin.java.annotation.command.Commands;
 import org.bukkit.plugin.java.annotation.permission.ChildPermission;
 import org.bukkit.plugin.java.annotation.permission.Permission;
 import org.bukkit.plugin.java.annotation.permission.Permissions;
+import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
+import org.bukkit.plugin.java.annotation.plugin.ApiVersion.Target;
 
 /**
  * Illager Net plugin that adds hardcore mechanics
  */
 @Plugin(name = "Hardcore", version = "1.0")
 @Description(value = "Hardcore mechanics")
+@ApiVersion(Target.v1_15)
 @Permissions({
 	@Permission(
 		name = "hardcore.revive",
