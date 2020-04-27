@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 	<version>1.1</version>
 	<name>hardcore</name>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/illagernet/hardcore</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
