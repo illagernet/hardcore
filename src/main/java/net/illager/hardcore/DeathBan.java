@@ -77,9 +77,23 @@ public class DeathBan implements ConfigurationSerializable {
 
 	/**
 	 * Get time remaining on death ban
+	 * @return Time in milliseconds
 	 */
 	public long timeRemaining() {
-		return this.time.getTime() + 259200000 - new Date().getTime();
+		return this.time.getTime() + 259200000 - this.discount - new Date().getTime();
+	}
+
+	/**
+	 * Create a new death ban discounted by an arbitrary amount of time
+	 * @param time Time in milliseconds
+	 */
+	public DeathBan discount(long time) {
+		return new DeathBan(
+			this.time,
+			this.location,
+			this.deathMessage,
+			this.discount + time
+		);
 	}
 
 	/**

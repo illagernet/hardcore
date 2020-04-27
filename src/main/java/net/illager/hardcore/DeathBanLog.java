@@ -94,6 +94,26 @@ public class DeathBanLog {
 	}
 
 	/**
+	 * Discount a log entry
+	 * @param uuid The player UUID
+	 * @param time Time in milliseconds
+	 */
+	public void discount(UUID uuid, long time) {
+		DeathBan ban = this.get(uuid);
+		this.add(uuid, ban.discount(time));
+	}
+
+	/**
+	 * Discount a log entry
+	 * @param username The player username
+	 * @param time Time in milliseconds
+	 */
+	public void discount(String username, long time) {
+		UUID uuid = this.fetchUUID(username);
+		this.discount(uuid, time);
+	}
+
+	/**
 	 * Checks a log entry existence
 	 * @param uuid The player UUID
 	 * @return Whether or not the entry exists
