@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,7 +13,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * A yaml log file to store deathbans
  */
 public class DeathBanLog {
-	private HardcorePlugin plugin;
+	private Logger logger;
 	private File file;
 	private FileConfiguration cache;
 
@@ -21,30 +22,30 @@ public class DeathBanLog {
 	 * @param filepath Log filepath
 	 */
 	public DeathBanLog(HardcorePlugin plugin, String filepath) {
-		this.plugin = plugin;
-		this.file = new File(this.plugin.getDataFolder(), filepath);
+		this.logger = plugin.getLogger();
+		this.file = new File(plugin.getDataFolder(), filepath);
 		this.load();
 	}
 
 	/**
 	 * Load the log from file
 	 */
-	public void load() {
+	private void load() {
 		try {
 			this.cache = YamlConfiguration.loadConfiguration(this.file);
 		} catch(IllegalArgumentException exception) {
-			this.plugin.getLogger().log(Level.SEVERE, exception.getMessage());
+			this.logger.log(Level.SEVERE, exception.getMessage());
 		}
 	}
 
 	/**
 	 * Save the log to file
 	 */
-	public void save() {
+	private void save() {
 		try {
 			this.cache.save(this.file);
 		} catch(IOException exception) {
-			this.plugin.getLogger().log(Level.SEVERE, exception.getMessage());
+			this.logger.log(Level.SEVERE, exception.getMessage());
 		}
 	}
 
@@ -55,6 +56,7 @@ public class DeathBanLog {
 	 */
 	public void add(UUID uuid, DeathBan deathBan) {
 		this.cache.set(uuid.toString(), deathBan);
+		this.save();
 	}
 
 	/**
@@ -63,6 +65,7 @@ public class DeathBanLog {
 	 */
 	public void remove(UUID uuid) {
 		this.cache.set(uuid.toString(), null);
+		this.save();
 	}
 
 	/**

@@ -25,7 +25,6 @@ public class PlayerDeath implements Listener {
 		String deathMessage = event.getDeathMessage();
 		DeathBan ban = new DeathBan(time, location, deathMessage, 0L);
 		log.add(player.getUniqueId(), ban);
-		log.save();
 		this.plugin.getServer().getScheduler().runTask(this.plugin, new Runnable() {
 			@Override
 			public void run() {
