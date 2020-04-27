@@ -21,6 +21,10 @@ public class PlayerJoin implements Listener {
 		if(!player.hasPlayedBefore()) {
 			Location spawnpoint = spawner.generate();
 			player.teleport(spawnpoint);
+
+			Welcome welcome = new Welcome(this.plugin);
+			welcome.giveKit(player);
+			welcome.remindWelcome(player);
 		}
 	}
 }
