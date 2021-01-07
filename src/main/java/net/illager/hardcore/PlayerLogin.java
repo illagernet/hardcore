@@ -9,18 +9,17 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 public class PlayerLogin implements Listener {
 	DeathBanLog log;
-	
+
 	public PlayerLogin(HardcorePlugin plugin) {
 		this.log = plugin.getDeathBanLog();
 	}
-	
+
 	@EventHandler
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		Player player = event.getPlayer();
 		UUID uuid = player.getUniqueId();
-		DeathBan ban;
 		if(!this.log.has(uuid)) return;
-		ban = this.log.get(uuid);
+		DeathBan ban = this.log.get(uuid);
 		if(ban.timeRemaining() <= 0) {
 			log.remove(uuid);
 			return;

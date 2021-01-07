@@ -52,10 +52,8 @@ public class HardcorePlugin extends JavaPlugin {
 		this.getCommand("revive").setExecutor(new ReviveCommand(this));
 		this.getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
 		this.getServer().getPluginManager().registerEvents(new PlayerLogin(this), this);
-		this.getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
-		this.getServer().getPluginManager().registerEvents(new PlayerRespawn(this), this);
 	}
-	
+
 	@Override
 	public void onDisable() {}
 
